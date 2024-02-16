@@ -11,3 +11,7 @@ docker pull httpd:latest
 ```bash
 docker images
 ```
+- C.Lancement apache avec index.html
+```bash
+sudo docker run -d -p 8080:80 --name hello_world_httpd -v /home/kali/Documents/TP_Docker/TP_DOCKER_1/html/index.html:/usr/local/apache2/htdocs/index.html httpd:latest
+```
