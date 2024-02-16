@@ -13,5 +13,9 @@ docker images
 ```bash
 sudo docker run -d -p 8080:80 --name hello_world_httpd -v /home/kali/Documents/TP_Docker/TP_DOCKER_1/html/index>
 ```
-
+- D.Suppression du container
+```bash
+docker stop mon_conteneur_httpd  # Arrêter le conteneur s'il est en cours d'exécution
+docker rm mon_conteneur_httpd    # Supprimer le conteneur
+```
 
