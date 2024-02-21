@@ -1,24 +1,70 @@
-
+## Installation Docker
+## Création dossier TP1
 #__1. Exécuter un serveur apache__
 - A.Image httpd
 ```bash
 docker pull httpd:latest
 ```
-
+- Version de docker
+```bash
+docker -v
+```
 - B.Vérification image
 ```bash
 docker images
 ```
-- C.Lancement apache avec index.html
+- Création dossier html et index.html dans le répo /tp_docker_1/
+
+- C.Lancement apache avec notre fichier index.html
 ```bash
 sudo docker run -d -p 8080:80 --name hello_world_httpd -v /home/kali/Documents/TP_Docker/TP_DOCKER_1/html/index>
 ```
-- D.Suppression du container
+- D.Suppression/arrêt du container
 ```bash
+docker ps                        # Affiche les conteneurs en exécution (ps -a pour voir les conteneurs non éxécuté)
 docker stop mon_conteneur_httpd  # Arrêter le conteneur s'il est en cours d'exécution
 docker rm mon_conteneur_httpd    # Supprimer le conteneur
 ```
 
 #__2. Exécuter dockerfile__
 - A. Exécution apache avec dockerfile
+```bash
+Création du fichier dockerfile dans /tp_docker_1/
+
+# Utilisation de l'image Apache officielle
+FROM httpd:latest
+# Copier le fichier index.html vers le répertoire /usr/local/apache2/htdocs/ du conteneur
+COPY ./html/index.html /usr/local/apache2/htdocs/
+# Définit le dossier de travail actuel
+WORKDIR /usr/local/apache2/htdocs/
+# Ouvre le lien entre docker et la machine en ouvrant le port 80
+EXPOSE 80
+```
+- B. Exécution du dockerfile "build de notre nouvelle image contenant notre fichier html"
+```bash
+docker build -t nom_image .   # Nom image de votre choix !
+```
+
+- C. Exécution de la nouvelle image
+```bash
+docker run --name [MY_CONTAINER] -d -p 8080:80 [MY_IMAGE]    # MY_IMAGE = nom de votre image
+```
+- D. Différences docker-run | dockerfile
+- Docker-run
+| Avantages                        | Inconvénients                        |
+| -------------------------------- | ----------------------------------- |
+| Facilité de déploiement           | Dépendance aux conteneurs            |
+| Isolation d'applications          | Consommation de ressources           |
+| Gestion simplifiée des dépendances | Complexité potentielle               |
+| Environnements reproductibles     | Taille des images Docker importante  |
+| Portabilité entre environnements  | Pas idéal pour toutes les applications |
+
+-DockerFile
+| Avantages                            | Inconvénients                         |
+| ------------------------------------ | ------------------------------------ |
+| Reproductibilité des environnements  | Dépendance aux images Docker         |
+| Contrôle précis des dépendances      | Taille parfois importante des images |
+| Automatisation du processus de build | Complexité potentielle               |
+| Isolation des dépendances et de l'environnement | Nécessite une connaissance de Docker |
+| Intégration facile dans des workflows CI/CD | Possibilité de surcharger la machine hôte |
 
