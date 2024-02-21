@@ -109,8 +109,6 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
-    ports:
-      - "3306:3306"
       
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
