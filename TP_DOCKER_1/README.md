@@ -86,15 +86,39 @@ $ docker run --name phpmyadmin -d --link sql_docker:db -p 8080:80 phpmyadmin
 
 #__6. Docker Compose__
 - A. Dockercompose | Docker-run
-|                         | Docker-run                               | Docker Compose                                     |
-|-------------------------|------------------------------------------|-----------------------------------------------------|
-| **Description**         | Commande pour lancer un conteneur Docker | Outil pour définir et gérer plusieurs conteneurs Docker |
-| **Utilisation**         | Idéal pour des déploiements simples ou des tests locaux | Pratique pour orchestrer des applications avec plusieurs services interconnectés |
-| **Exemple**             | `docker run -d -p 8080:80 --name mon_conteneur_httpd httpd:latest` | Fichier `docker-compose.yml` décrivant une application avec une base de données MySQL et une application web PHP |
+
+|               | Docker-run                      | Docker Compose                                      |
+|---------------|---------------------------------|------------------------------------------------------|
+| **Description** | Lancer un conteneur Docker      | Gérer plusieurs conteneurs Docker avec simplicité     |
+| **Utilisation** | Idéal pour déploiements simples | Pratique pour orchestrer des applications complexes  |
+| **Exemple**     | `docker run -d -p 8080:80 --name mon_conteneur_httpd httpd:latest` | `docker-compose.yml` décrivant une application avec MySQL et PHP |
 
 
 - B. Docker compose lancement et stop
 ```bash
 docker-compose up -d    # Lancement docker-compose
 docker-compose down     # Stop docker-compose
+```
+- C. Ecriture du docker-compose
+```yaml
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
 ```
