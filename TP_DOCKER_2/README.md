@@ -78,7 +78,7 @@ docker network create --subnet=172.18.0.0/16 --gateway=172.18.0.1 perso_network
 ```
 - Lancement docker mysql
 ```bash
-docker run -p 3000:3000 --network perso_network --link sql_docker:db node_docker
+docker run --name sql_docker -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 --network perso_network -d mysql:latest
 ```
 - Lancement docker node
 ```bash
