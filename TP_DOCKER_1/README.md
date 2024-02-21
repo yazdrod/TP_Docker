@@ -1,5 +1,5 @@
 
-__1. Exécuter un serveur apache__
+#__1. Exécuter un serveur apache__
 - A.Image httpd
 ```bash
 docker pull httpd:latest
@@ -18,4 +18,7 @@ sudo docker run -d -p 8080:80 --name hello_world_httpd -v /home/kali/Documents/T
 docker stop mon_conteneur_httpd  # Arrêter le conteneur s'il est en cours d'exécution
 docker rm mon_conteneur_httpd    # Supprimer le conteneur
 ```
+
+#__2. Exécuter dockerfile__
+- A. Exécution apache avec dockerfile
 
