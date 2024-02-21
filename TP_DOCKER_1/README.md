@@ -50,19 +50,23 @@ docker build -t nom_image .   # Nom image de votre choix !
 docker run --name [MY_CONTAINER] -d -p 8080:80 [MY_IMAGE]    # MY_IMAGE = nom de votre image
 ```
 - D. Différences docker-run | dockerfile
-- Docker-run
-| Avantages                        | Inconvénients                        |
-| -------------------------------- | ----------------------------------- |
-| Facilité de déploiement           | Dépendance aux conteneurs            |
-| Isolation d'applications          | Consommation de ressources           |
-| Gestion simplifiée des dépendances | Complexité potentielle               |
+## Docker-run
+
+| Avantages                         | Inconvénients                       |
+| --------------------------------- | ----------------------------------- |
+| Facilité de déploiement           | Dépendance aux conteneurs           |
+| Isolation d'applications          | Consommation de ressources          |
+| Gestion simplifiée des dépendances | Complexité potentielle              |
 | Environnements reproductibles     | Taille des images Docker importante |
--DockerFile
-| Avantages                            | Inconvénients                         |
-| ------------------------------------ | ------------------------------------ |
-| Reproductibilité des environnements  | Dépendance aux images Docker         |
-| Contrôle précis des dépendances      | Taille parfois importante des images |
-| Automatisation du processus de build | Complexité potentielle               |
+
+## DockerFile
+
+| Avantages                            | Inconvénients                       |
+| ------------------------------------ | ----------------------------------- |
+| Reproductibilité des environnements  | Dépendance aux images Docker        |
+| Contrôle précis des dépendances      | Taille parfois importante des images|
+| Automatisation du processus de build | Complexité potentielle              |
+
 
 #__5. Utilisation base de données dans un conteneur
 - A. Récupération BDD mysql + phpmyadmin
