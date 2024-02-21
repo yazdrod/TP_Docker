@@ -104,7 +104,7 @@ docker-compose down     # Stop docker-compose
 version: '3.8'
 
 services:
-  mysql:
+  mysql_docker:
     image: mysql:latest
     restart: always
     environment:
@@ -116,9 +116,7 @@ services:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
     environment:
-      PMA_HOST: mysql
       PMA_PORT: 3306
-      PMA_ARBITRARY: 1
     ports:
       - "8080:80"
 ```
