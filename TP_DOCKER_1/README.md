@@ -83,3 +83,17 @@ $ docker run --name phpmyadmin -d --link sql_docker:db -p 8080:80 phpmyadmin
 ```
 ![Phpmyadmin](./phpmyadmin.png)
 
+
+#__6. Docker Compose__
+- A. Dockercompose | Docker-run
+|                         | Docker-run                               | Docker Compose                                     |
+|-------------------------|------------------------------------------|-----------------------------------------------------|
+| **Description**         | Commande pour lancer un conteneur Docker | Outil pour définir et gérer plusieurs conteneurs Docker |
+| **Utilisation**         | Idéal pour des déploiements simples ou des tests locaux | Pratique pour orchestrer des applications avec plusieurs services interconnectés |
+| **Exemple**             | `docker run -d -p 8080:80 --name mon_conteneur_httpd httpd:latest` | Fichier `docker-compose.yml` décrivant une application avec une base de données MySQL et une application web PHP |
+
+- B. Docker compose lancement et stop
+```bash
+docker-compose up -d    # Lancement docker-compose
+docker-compose down     # Stop docker-compose
+```
