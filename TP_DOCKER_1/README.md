@@ -114,6 +114,7 @@ services:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
     environment:
+      PMA_HOST: mysql_docker
       PMA_PORT: 3306
     ports:
       - "8080:80"
