@@ -7,9 +7,11 @@ Dans /src/
 ```dockerfile
 FROM node:20-alpine
 WORKDIR /app
-COPY . .
+
+COPY ./src ./
 RUN npm install
-CMD["node","src/index.js"]
+
+CMD ["node","server.js"]
 EXPOSE 3000
 ```
 - Puis lancer les commandes suivantes :
