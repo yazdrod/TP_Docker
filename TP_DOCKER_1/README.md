@@ -1,6 +1,6 @@
-## Installation Docker
-## Création dossier TP1
-#__1. Exécuter un serveur apache__
+## 1.Installation Docker
+## 2.Création dossier TP1
+#__3. Exécuter un serveur apache__
 - A.Image httpd
 ```bash
 docker pull httpd:latest
@@ -26,9 +26,9 @@ docker stop mon_conteneur_httpd  # Arrêter le conteneur s'il est en cours d'ex�
 docker rm mon_conteneur_httpd    # Supprimer le conteneur
 ```
 
-#__2. Exécuter dockerfile__
+#__4. Exécuter dockerfile__
 - A. Exécution apache avec dockerfile
-```bash
+```Dockerfile
 Création du fichier dockerfile dans /tp_docker_1/
 
 # Utilisation de l'image Apache officielle
@@ -56,15 +56,19 @@ docker run --name [MY_CONTAINER] -d -p 8080:80 [MY_IMAGE]    # MY_IMAGE = nom de
 | Facilité de déploiement           | Dépendance aux conteneurs            |
 | Isolation d'applications          | Consommation de ressources           |
 | Gestion simplifiée des dépendances | Complexité potentielle               |
-| Environnements reproductibles     | Taille des images Docker importante  |
-| Portabilité entre environnements  | Pas idéal pour toutes les applications |
-
+| Environnements reproductibles     | Taille des images Docker importante |
 -DockerFile
 | Avantages                            | Inconvénients                         |
 | ------------------------------------ | ------------------------------------ |
 | Reproductibilité des environnements  | Dépendance aux images Docker         |
 | Contrôle précis des dépendances      | Taille parfois importante des images |
 | Automatisation du processus de build | Complexité potentielle               |
-| Isolation des dépendances et de l'environnement | Nécessite une connaissance de Docker |
-| Intégration facile dans des workflows CI/CD | Possibilité de surcharger la machine hôte |
+
+#__5. Utilisation base de données dans un conteneur
+- A. Récupération BDD mysql + phpmyadmin
+```bash
+docker pull mysql
+docker pull phpmyadmin
+```
+- B. Exécution 2 conteneurs
 
