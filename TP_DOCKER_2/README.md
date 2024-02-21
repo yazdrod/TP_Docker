@@ -30,6 +30,46 @@ docker run -dp 3000:3000 node_docker
 ```
 ![node](./node.png)
 
+- Modification fichier "db.config.js"
+```js
+/*module.exports = {
+    dialect: "sqlite",
+    storage: "./my-db.sqlite",
+}*/
+
+// Uncomment this block to use mysql
+module.exports = {
+    dialect: "mysql",
+    hostname: "sql_docker",    # Mettre le nom du container sql en éxécution
+    username: "root",
+    password: "",
+    database: "mydatabase",
+    port: 3306
+}
+```
+- Modification fichier "index.js" dans /src/models/
+```js
+const { Sequelize } = require('sequelize');
+const dbConfig = require('../db.config');
+
+// Uncomment this block to use Mysql, don't forget to adapt db.config.js
+const instance = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
+        host: dbConfig.hostname,
+        port: dbConfig.port,
+        dialect: "mysql"
+});
+
+// Uncomment this block to use Sqlite, don't forget to adapt db.config.js
+/*const instance = new Sequelize({
+    dialect: dbConfig.dialect,
+    storage: dbConfig.storage
+});*/
+
+module.exports = {
+    instance,
+    books: require('./books')(instance)
+};
+```
 - Lancement docker mysql
 ```bash
 $ docker run --name sql_docker -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
