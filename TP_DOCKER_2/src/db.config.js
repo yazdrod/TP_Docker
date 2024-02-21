@@ -6,11 +6,10 @@
 
 // Uncomment this block to use mysql
 module.exports = {
-    dialect: "mysql",
     hostname: "sql_docker",
     username: "root",
-    password: "",
-    database: "mydatabase",
+    password: "password",
+    database: "mysql",
     port: 3306
 }
 

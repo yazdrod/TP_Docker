@@ -32,6 +32,7 @@ docker run -dp 3000:3000 node_docker
 
 - Modification fichier "db.config.js"
 ```js
+// Uncomment this block to use sqlite
 /*module.exports = {
     dialect: "sqlite",
     storage: "./my-db.sqlite",
@@ -39,13 +40,14 @@ docker run -dp 3000:3000 node_docker
 
 // Uncomment this block to use mysql
 module.exports = {
-    dialect: "mysql",
-    hostname: "sql_docker",    # Mettre le nom du container sql en éxécution
+    hostname: "sql_docker",
     username: "root",
-    password: "",
-    database: "mydatabase",
+    password: "password",
+    database: "mysql",
     port: 3306
 }
+
+// TODO : adapt this file to load parameters from environment variables (process.env.VARIABLE_NAME)
 ```
 - Modification fichier "index.js" dans /src/models/
 ```js
@@ -70,8 +72,15 @@ module.exports = {
     books: require('./books')(instance)
 };
 ```
+- Création d'un network pour les lancements des containers
+```bash
+docker network create --subnet=172.18.0.0/16 --gateway=172.18.0.1 perso_network
+```
 - Lancement docker mysql
 ```bash
-$ docker run --name sql_docker -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+docker run -p 3000:3000 --network perso_network --link sql_docker:db node_docker
 ```
-
+- Lancement docker node
+```bash
+docker run -p 3000:3000 --network perso_network node_docker
+```
