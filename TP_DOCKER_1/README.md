@@ -81,4 +81,5 @@ $ docker run --name phpmyadmin -d --link sql_docker:db -p 8080:80 phpmyadmin
 
 #Lors du lancement du conteneur docker phpmyadmin nous mettons --link "le nom du conteneur sql" cela permettra de relier la BDD a Phpmyadmin
 ```
+![Phpmyadmin](./phpmyadmin.png)
 
