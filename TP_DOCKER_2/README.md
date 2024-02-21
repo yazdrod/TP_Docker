@@ -28,5 +28,10 @@ $ docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock wagoodman/div
 docker build -t node_docker .
 docker run -dp 3000:3000 node_docker
 ```
+![node](./node.png)
 
+- Lancement docker mysql
+```bash
+$ docker run --name sql_docker -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+```
 
