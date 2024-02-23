@@ -122,3 +122,10 @@ networks:
 ```
 Par pécaution j'effectue un "docker image prune" et "docker container prune"
 Ensuite je relance la commande docker-compose -up et le message node.js "Server running" est censé s'afficher.
+
+
+- Q1: Une erreur sera indiqué comme quoi le port est déjà utilisé
+- Q2: Pour n'installer que les dépendances de production il faut utiliser "npm install --production"
+- Q2.1: Cela permet une economie d'espace disque, de la sécurité, des performances ainsi que la conformité
+- Q3 : ?
+- Q4 : Si on laisse localhost en hostname pour appeler la BDD, cela revient a s'appeler soit même c'est pour cela qu'il faut a la place mettre le nom du service, container pour qu'il puisse communiquer avec la BDD qui a également son expose < port > 
