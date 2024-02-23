@@ -84,3 +84,41 @@ docker run --name sql_docker -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 --netw
 ```bash
 docker run -p 3000:3000 --network perso_network node_docker
 ```
+
+# 5. Création docker-compose.yml
+
+```yml
+version: '3.8'
+
+services:
+  bdd:
+    image: mysql:latest
+    container_name: bdd_dock
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    expose:
+      - 3306
+    networks:
+      - perso_network
+
+  node:
+    build:
+      context: ./
+      dockerfile: dockerfile.node
+    container_name: node_dock
+    restart: always
+    environment:
+      DB_HOST: bdd
+      DB_PORT: 3306
+    ports:
+      - "3000:3000"
+    networks:
+      - perso_network
+
+networks:
+  perso_network:
+    driver: bridge
+                 
+```
+Par pécaution j'effectue un "docker image prune" et "docker container prune"
+Ensuite je relance la commande docker-compose -up et le message node.js "Server running" est censé s'afficher.

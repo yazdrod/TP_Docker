@@ -6,7 +6,7 @@
 
 // Uncomment this block to use mysql
 module.exports = {
-    hostname: "sql_docker",
+    hostname: "bdd",
     username: "root",
     password: "password",
     database: "mysql",

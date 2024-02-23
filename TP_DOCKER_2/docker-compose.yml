@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  bdd:
+    image: mysql:latest
+    container_name: bdd_dock
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    expose:
+      - 3306
+    networks:
+      - perso_network
+
+  node:
+    build:
+      context: ./
+      dockerfile: dockerfile.node
+    container_name: node_dock
+    restart: always
+    environment:
+      DB_HOST: bdd
+      DB_PORT: 3306
+    ports:
+      - "3000:3000"
+    networks:
+      - perso_network
+
+networks:
+  perso_network:
+    driver: bridge
