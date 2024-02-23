@@ -115,7 +115,8 @@ services:
       - "3000:3000"
     networks:
       - perso_network
-
+    depends_on:
+      - bdd
 networks:
   perso_network:
     driver: bridge
