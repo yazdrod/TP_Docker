@@ -22,7 +22,7 @@ $ docker pull wagoodman/dive
 ```bash
 $ docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive:latest node_docker
 ```
-
+# 3. Lancement du node
 - Une fois le build ok éxécuter les commandes suivantes :
 ```bash
 docker build -t node_docker .
@@ -30,6 +30,7 @@ docker run -dp 3000:3000 node_docker
 ```
 ![node](./node.png)
 
+# 4. Adataption des fichiers conf pour passer de sqlite ==> mysql
 - Modification fichier "db.config.js"
 ```js
 // Uncomment this block to use sqlite
